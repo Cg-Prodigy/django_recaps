@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Form Example{% endblock title %}
+{% block content %}
+<p>{{method}}</p>
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label for="first_name">First Name</label><br>
+        <input id="first_name" type='text' placeholder='Your legal First Name' name="First Name">
+    </p>
+    <p>
+        <label for="last_name">Last Name</label><br>
+        <input id="last_name" type='text' placeholder='Your legal Last Name' name="Last Name">
+    </p>
+    <p>
+        <label for="email_address">Email Address</label><br>
+        <input id="email_address" type='email' placeholder='Working email' name="Email Address">
+    </p>
+    <p>
+        <label for="pswd">Create Password</label><br>
+        <input id="pswd" type='password' placeholder='Create a strong Password' name="Password">
+    </p>
+    <p>
+        <label for="c_pswd">Confirm Password</label><br>
+        <input id="c_pswd" type='password' placeholder='Confirm password' name="Confirm Password">
+    </p>
+    <p>
+        <button type='submit'>Sign Up</button>
+    </p>
+</form>
+{% endblock content %}

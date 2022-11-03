@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if not data %}
+<p>No houses added yet</p>
+{% else %}
+<ul>
+{% for house in data %}
+<li>{{house.house}}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}
