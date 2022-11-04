@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<h3>Login to Register your Houses</h3>
+<form method="post">
+    {% csrf_token %}
+    <fiedset>
+        <legend>Login</legends>
+        {% for field in form %}
+            {{ field.label }}<br>
+            {{ field }}<br>
+            {{ field.errors }}
+        {% endfor %}
+    </fieldset>
+</form>
+{% endblock content %}

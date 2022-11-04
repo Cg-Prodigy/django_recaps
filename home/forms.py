@@ -1,14 +1,11 @@
 import re
 from django import forms
 from django.core.exceptions import ValidationError
-
 # custom validators
 def validate_password(value):
     regx=re.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$")
     if not re.search(regx,value):
         raise ValidationError("Password is weak!")
-
-
 class LoginForm(forms.Form):
     CAREER_CHOICES=(
         ('Computer Science',
