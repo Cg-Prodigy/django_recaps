@@ -10,6 +10,7 @@ class LandlordManager(BaseUserManager):
             last_name=last_name,
             email=email,
             national_id=national_id,
+            **other_fields,
         )
         user.set_password(password)
         user.save()
