@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <p>Login Page</p>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label for='id_no'>Id No</label>
+                <input type='text' placeholder='National ID Number' id="id_no">
+            </div>
+            <div>
+                <label for='pswd'>Password</label>
+                <input type='password' placeholder='Password' id="pswd">
+            </div>
+            <input type='submit' value="Login">
+        </form>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
