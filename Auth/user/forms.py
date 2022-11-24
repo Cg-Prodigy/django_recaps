@@ -1,20 +1,10 @@
-import re
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Tenant
-from django.core.exceptions import ValidationError
-
-def validatePassword(password):
-    pattern=re.compile(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$")
-    if not re.search(pattern,password):
-        return ValidationError("Weak password")
-class TenantForm(forms.ModelForm):
-    password=forms.CharField(max_length=30,widget=forms.PasswordInput(),validators=[validatePassword])
-    c_password=forms.CharField(max_length=30,widget=forms.PasswordInput(),validators=[validatePassword])
+from django.contrib.auth.models import User
+class CreateUser(UserCreationForm):
+    dob=forms.DateField(widget=forms.DateInput(attrs={"type":"date"}))
+    first_name=forms.CharField(max_length=20)
+    last_name=forms.CharField(max_length=20)
     class Meta:
-        model=Tenant
-        fields=('first_name','last_name','email','id_no','password')
-
-    def clean(self):
-        data=super().clean()
-        if data['password']!=data['c_password']:
-            self.add_error('password','Passwords do not match')
+        model=User
+        fields=["first_name","last_name","username","email","dob","password1","password2"]

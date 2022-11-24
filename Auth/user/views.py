@@ -1,21 +1,29 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
-from .forms import TenantForm
-
-
+from django.contrib import messages
+from .forms import CreateUser
 def homePage(request):
     return render(request,'index.html')
 def loginPage(request):
     if request.method=="POST":
-        print(request.POST.get('id_no'))
+        user_name=request.POST.get("username")
+        password=request.POST.get("password")
+        user=authenticate(request,username=user_name,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('homepage')
+        else:
+            messages.info(request,"Username or password is incorrect")
         
     return render(request,'user/login.html')
 def signupPage(request):
     if request.method=="POST":
-        form=TenantForm(request.POST)
+        form=CreateUser(request.POST)
         if form.is_valid():
+            user_name=form.cleaned_data.get("username")
             form.save()
-            return redirect('login')
+            messages.success(request,f"Account for {user_name} has been created succesfully.")
+            return redirect("login")
     else:
-        form=TenantForm()
+        form=CreateUser()
     return render(request,'user/signup.html',{'form':form})
