@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid"> 
+<form method='POST'>
+    {% csrf_token %}
+    {% for field in form %}
+
+    <div class="mb-3">
+        {{ field.label }}
+        {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock content %}
